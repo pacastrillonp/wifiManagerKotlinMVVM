@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.WifiActivity">
+
+
+        <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content" android:id="@+id/guideline"
+                                                    android:orientation="vertical"
+                                                    app:layout_constraintGuide_percent="0.05"/>
+        <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content" android:id="@+id/guideline2"
+                                                    android:orientation="vertical"
+                                                    app:layout_constraintGuide_percent="0.95"/>
+        <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content" android:id="@+id/guideline3"
+                                                    android:orientation="horizontal"
+                                                    app:layout_constraintGuide_percent="0.05"/>
+
+
+        <LinearLayout android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:weightSum="1"
+                      app:layout_constraintTop_toTopOf="@+id/guideline3"
+                      app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                      app:layout_constraintStart_toStartOf="@+id/guideline" android:id="@+id/linearLayout2">
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:layout_weight="0.25"
+                      android:textSize="18sp"
+                      android:textStyle="bold"
+                      android:text="@string/ssid"/>
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:layout_weight="0.375"
+                      android:text="@string/state"
+                      android:textAlignment="center"
+                      android:textSize="18sp"
+                      android:textStyle="bold"/>
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:layout_weight="0.375"
+                      android:textSize="18sp"
+                      android:textAlignment="center"
+                      android:textStyle="bold"
+                      android:text="@string/level"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                android:layout_marginTop="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintBottom_toTopOf="@+id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                android:id="@+id/recyclerView"
+                tools:listitem="@layout/item_available_network"/>
+
+        <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content" android:id="@+id/guideline5"
+                                                    android:orientation="horizontal"
+                                                    app:layout_constraintGuide_percent="0.85"/>
+        <LinearLayout android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:weightSum="1"
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="8dp"
+                      app:layout_constraintBottom_toTopOf="@+id/guideline4"
+                      app:layout_constraintStart_toStartOf="@+id/guideline"
+                      app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                      app:layout_constraintTop_toTopOf="@+id/guideline5">
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:textSize="18sp"
+                      android:gravity="center_vertical"
+                      android:layout_gravity="center_horizontal"
+                      android:text="@string/add_network"
+                      android:textStyle="bold"
+                      android:layout_weight="0.25"/>
+
+            <androidx.appcompat.widget.AppCompatButton android:layout_width="match_parent"
+                                                       android:id="@+id/add_network_button"
+                                                       android:layout_height="match_parent"
+                                                       android:textSize="18sp"
+                                                       android:textAlignment="center"
+                                                       android:background="@color/white"
+                                                       android:text="@string/go_to"
+                                                       android:layout_weight="0.75"/>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content" android:id="@+id/guideline4"
+                                                    android:orientation="horizontal"
+                                                    app:layout_constraintGuide_percent="0.95"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

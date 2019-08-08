@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">WifiManager</string>
+    <string name="ssid">SSID</string>
+    <string name="state">STATE</string>
+    <string name="level">LEVEL</string>
+    <string name="add_network">Add Network</string>
+    <string name="go_to"><![CDATA[>]]></string>
+    <string name="image_description_state">image description state</string>
+    <string name="image_description_level">image description level</string>
+    <string name="tekus">Tekus</string>
+</resources>
