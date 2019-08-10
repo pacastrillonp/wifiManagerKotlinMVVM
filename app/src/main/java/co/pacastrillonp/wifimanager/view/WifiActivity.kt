@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import co.pacastrillonp.wifimanager.R
 import co.pacastrillonp.wifimanager.databinding.ActivityWifiBinding
 import co.pacastrillonp.wifimanager.di.util.viewModelProvider
+import co.pacastrillonp.wifimanager.dialogs.ConnecWifiNetworkDispatcher
 import co.pacastrillonp.wifimanager.viewmodel.WifiViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,6 +26,9 @@ class WifiActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var connecWifiNetworkDispatcher: ConnecWifiNetworkDispatcher
 
     private lateinit var wifiViewModel: WifiViewModel
     private lateinit var availableWifiAdapter: AvailableWifiAdapter
@@ -112,6 +116,14 @@ class WifiActivity : DaggerAppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 availableWifiAdapter.submitList(it)
+            }
+            .addTo(disposable)
+
+        wifiViewModel.connectToNetworkOutput
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                connecWifiNetworkDispatcher.openConnectWifiNetworkDialog(this@WifiActivity)
+
             }
             .addTo(disposable)
     }

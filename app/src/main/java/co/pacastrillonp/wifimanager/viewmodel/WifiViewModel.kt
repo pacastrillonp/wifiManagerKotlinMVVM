@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 
 class WifiViewModel @Inject constructor(
-    availableNetworkService: AvailableNetworkService
+//    availableNetworkService: AvailableNetworkService
 ) : ViewModel(), WifiAvailableEventListener {
 
     // Inputs
@@ -19,35 +19,39 @@ class WifiViewModel @Inject constructor(
 
     // Outputs
     val wifiAvailableListOutput: Observable<List<AvailableWifiViewModelItem>>
-
+    val connectToNetworkOutput: Observable<AvailableWifiViewModelItem>
+    // Internal
+    private val connectToNetworkInput = PublishSubject.create<AvailableWifiViewModelItem>()
 
     init {
         //TODO: Investigar como solucionar el status de la red
 
-        wifiAvailableListOutput = loadWifiListInput
-            .flatMap { availableNetworkService.availableNetworks }
-            .map { availableWifiNetworkEntity ->
-                availableWifiNetworkEntity.scanResults.map {
-                    val status: Boolean = availableWifiNetworkEntity.ssidNetworkConnect == it.SSID
-                    AvailableWifiViewModelItem(it.SSID, status, it.level)
-                }
-            }
+//        wifiAvailableListOutput = loadWifiListInput
+//            .flatMap { availableNetworkService.availableNetworks }
+//            .map { availableWifiNetworkEntity ->
+//                availableWifiNetworkEntity.scanResults.map {
+//                    val status: Boolean = availableWifiNetworkEntity.ssidNetworkConnect == it.SSID
+//                    AvailableWifiViewModelItem(it.SSID, status, it.level)
+//                }
+//            }
 
-//        wifiAvailableListOutput = loadWifiListInput.map {
-//            listOf<AvailableWifiViewModelItem>(
-//                AvailableWifiViewModelItem("tekus", true, 4),
-//                AvailableWifiViewModelItem("tekuzeros", false, 3),
-//                AvailableWifiViewModelItem("tekuzeros", false, 3),
-//                AvailableWifiViewModelItem("tekuzeros", false, 0),
-//                AvailableWifiViewModelItem("tekuzeros", false, 2),
-//                AvailableWifiViewModelItem("tekuzeros", false, 1)
-//            )
-//        }
+        wifiAvailableListOutput = loadWifiListInput.map {
+            listOf<AvailableWifiViewModelItem>(
+                AvailableWifiViewModelItem("tekus", true, 4),
+                AvailableWifiViewModelItem("tekuzeros", false, 3),
+                AvailableWifiViewModelItem("tekuzeros", false, 3),
+                AvailableWifiViewModelItem("tekuzeros", false, 0),
+                AvailableWifiViewModelItem("tekuzeros", false, 2),
+                AvailableWifiViewModelItem("tekuzeros", false, 1)
+            )
+        }
+
+        connectToNetworkOutput = connectToNetworkInput
+
     }
 
-    override fun onClick(availableWifiViewModelItem: AvailableWifiViewModelItem) {
-
-    }
+    override fun onClick(availableWifiViewModelItem: AvailableWifiViewModelItem) =
+        connectToNetworkInput.onNext(availableWifiViewModelItem)
 }
 
 interface WifiAvailableEventListener : AvailableWifiActions

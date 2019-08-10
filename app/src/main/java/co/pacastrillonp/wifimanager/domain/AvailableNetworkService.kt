@@ -6,15 +6,15 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 interface AvailableNetworkService {
-    val availableNetworks: Observable<AvailableWifiNetworkEntity>
+//    val availableNetworks: Observable<AvailableWifiNetworkEntity>
 
 }
 
 @Singleton
 open class DefaultAvailableNetworkService @Inject constructor(
-    @Named("wifiManagerRepository") private val wifiManagerRepository: WifiManagerRepository
+//    @Named("wifiManagerRepository") private val wifiManagerRepository: WifiManagerRepository
 ) : AvailableNetworkService {
-    override val availableNetworks: Observable<AvailableWifiNetworkEntity>
-        get() = wifiManagerRepository.getAvailableWifiNetworks()
+//    override val availableNetworks: Observable<AvailableWifiNetworkEntity>
+//        get() = wifiManagerRepository.getAvailableWifiNetworks()
 
 }

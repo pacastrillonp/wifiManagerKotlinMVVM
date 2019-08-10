@@ -10,4 +10,6 @@
     <string name="tekus">Tekus</string>
     <string name="password">Password</string>
     <string name="description">Description</string>
+    <string name="connect_wifi">Connect</string>
+    <string name="cancel_connect_wifi">Cancel</string>
 </resources>

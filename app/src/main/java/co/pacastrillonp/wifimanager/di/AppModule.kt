@@ -16,22 +16,22 @@ class AppModule {
     @Provides
     fun provideApplicationContext(application: MainApplication): Context = application.applicationContext
 
-    @Singleton
-    @Provides
-    @Named("wifiManagerRepository")
-    fun provideWifiManagerRepository(
-        context: Context
-    ): WifiManagerRepository {
-        return DefaultMediaRepository(context)
-    }
+//    @Singleton
+//    @Provides
+//    @Named("wifiManagerRepository")
+//    fun provideWifiManagerRepository(
+//        context: Context
+//    ): WifiManagerRepository {
+//        return DefaultMediaRepository(context)
+//    }
 
 
-    @Singleton
-    @Provides
-    fun provideAvailableNetworkService(
-        @Named("wifiManagerRepository") wifiManagerRepository: WifiManagerRepository
-    ): DefaultAvailableNetworkService {
-        return DefaultAvailableNetworkService(wifiManagerRepository)
-    }
+//    @Singleton
+//    @Provides
+//    fun provideAvailableNetworkService(
+//        @Named("wifiManagerRepository") wifiManagerRepository: WifiManagerRepository
+//    ): DefaultAvailableNetworkService {
+//        return DefaultAvailableNetworkService(wifiManagerRepository)
+//    }
 
 }
