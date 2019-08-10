@@ -5,6 +5,7 @@ buildscript {
     ext.dagger_version = '2.20'
     ext.kotlin_version = '1.3.41'
     ext.lifecycle_version = '1.1.1'
+    ext.meterial_version = '1.0.0'
     ext.rxAndroidVersion = '2.1.0'
     ext.rxJavaVersion = '2.2.5'
     ext.rxKotlinVersion = '2.3.0'
