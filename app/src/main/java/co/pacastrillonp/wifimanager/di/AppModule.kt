@@ -2,9 +2,7 @@ package co.pacastrillonp.wifimanager.di
 
 import android.content.Context
 import co.pacastrillonp.wifimanager.MainApplication
-import co.pacastrillonp.wifimanager.domain.DefaultAvailableNetworkService
-import co.pacastrillonp.wifimanager.domain.DefaultMediaRepository
-import co.pacastrillonp.wifimanager.domain.WifiManagerRepository
+import co.pacastrillonp.wifimanager.domain.*
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -16,22 +14,21 @@ class AppModule {
     @Provides
     fun provideApplicationContext(application: MainApplication): Context = application.applicationContext
 
-//    @Singleton
-//    @Provides
-//    @Named("wifiManagerRepository")
-//    fun provideWifiManagerRepository(
-//        context: Context
-//    ): WifiManagerRepository {
-//        return DefaultMediaRepository(context)
-//    }
+    @Singleton
+    @Provides
+    @Named("wifiRepository")
+    fun provideWifiRepository(
+        context: Context
+    ): WifiRepository {
+        return DefaultWifiRepository(context)
+    }
 
-
-//    @Singleton
-//    @Provides
-//    fun provideAvailableNetworkService(
-//        @Named("wifiManagerRepository") wifiManagerRepository: WifiManagerRepository
-//    ): DefaultAvailableNetworkService {
-//        return DefaultAvailableNetworkService(wifiManagerRepository)
-//    }
+    @Singleton
+    @Provides
+    fun provideAvailableNetworkService(
+        @Named("wifiRepository") wifiRepository: WifiRepository
+    ): AvailableNetworkService {
+        return DefaultAvailableNetworkService(wifiRepository)
+    }
 
 }

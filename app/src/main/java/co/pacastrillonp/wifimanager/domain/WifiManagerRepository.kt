@@ -9,12 +9,12 @@ import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 
-interface WifiManagerRepository {
+interface WifiRepository {
     fun getAvailableWifiNetworks(): Observable<AvailableWifiNetworkEntity>
     fun connectToNetwork(wifiConfig: WifiConfiguration)
 }
 
-class DefaultMediaRepository @Inject constructor(context: Context) : WifiManagerRepository {
+class DefaultWifiRepository @Inject constructor(context: Context) : WifiRepository {
 
 
     private val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager

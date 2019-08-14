@@ -4,7 +4,7 @@ import androidx.fragment.app.FragmentActivity
 import co.pacastrillonp.wifimanager.view.ConnectWifiDialogFragment
 import javax.inject.Inject
 
-class ConnecWifiNetworkDispatcher @Inject constructor() {
+class ConnectWifiNetworkDispatcher @Inject constructor() {
 
     fun openConnectWifiNetworkDialog(activity: FragmentActivity) {
         val dialog = ConnectWifiDialogFragment()

@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import co.pacastrillonp.wifimanager.R
 import co.pacastrillonp.wifimanager.databinding.ActivityWifiBinding
 import co.pacastrillonp.wifimanager.di.util.viewModelProvider
-import co.pacastrillonp.wifimanager.dialogs.ConnecWifiNetworkDispatcher
+import co.pacastrillonp.wifimanager.dialogs.ConnectWifiNetworkDispatcher
 import co.pacastrillonp.wifimanager.viewmodel.WifiViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -28,17 +28,17 @@ class WifiActivity : DaggerAppCompatActivity() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
-    lateinit var connecWifiNetworkDispatcher: ConnecWifiNetworkDispatcher
+    lateinit var connectWifiNetworkDispatcher: ConnectWifiNetworkDispatcher
 
     private lateinit var wifiViewModel: WifiViewModel
     private lateinit var availableWifiAdapter: AvailableWifiAdapter
 
     private val disposable = CompositeDisposable()
 
-
     private val myPermissionsAccessCoarseLocation = 1
 
     private lateinit var  wifiManager: WifiManager
+
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -122,7 +122,7 @@ class WifiActivity : DaggerAppCompatActivity() {
         wifiViewModel.connectToNetworkOutput
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                connecWifiNetworkDispatcher.openConnectWifiNetworkDialog(this@WifiActivity)
+                connectWifiNetworkDispatcher.openConnectWifiNetworkDialog(this@WifiActivity)
 
             }
             .addTo(disposable)
